@@ -77,7 +77,9 @@
     <main class="max-w-7xl mx-auto px-6 py-12 flex-grow w-full">
         <!-- Hero Title -->
         <div class="text-center max-w-3xl mx-auto mb-12">
-          
+            <h1 class="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-white">
+                Simulador de impacto del NO uso del FSD en España
+            </h1>
             <p class="text-tesla-muted text-sm md:text-base leading-relaxed">
                 Simulación en tiempo real basada en el marco de reconocimiento mutuo europeo desde el 10 de abril de 2026.
             </p>
@@ -100,13 +102,25 @@
                 </div>
             </div>
 
-            <!-- Card 2: Vidas Salvadas -->
+            <!-- Card 2: Vidas Salvadas y Coste Monetario -->
             <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group shadow-xl shadow-black">
                 <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500/60 group-hover:bg-emerald-500 transition-colors"></div>
                 <div>
-                    <span class="text-xs uppercase tracking-wider text-tesla-muted font-semibold block mb-2">Estimación de Vidas Humanas Salvadas</span>
-                    <div class="text-3xl lg:text-5xl font-mono font-bold text-white tracking-tight py-4" id="lives-counter">
+                    <span class="text-xs uppercase tracking-wider text-tesla-muted font-semibold block mb-1">Estimación de Vidas Humanas Salvadas</span>
+                    
+                    <!-- Contador Principal de Vidas -->
+                    <div class="text-3xl lg:text-5xl font-mono font-bold text-white tracking-tight py-2" id="lives-counter">
                         0.00000
+                    </div>
+
+                    <!-- Métricas de Impacto Económico y Generacional -->
+                    <div class="space-y-1 mt-1 mb-3">
+                        <div class="text-sm font-semibold text-emerald-400 font-mono" id="cost-counter">
+                            Coste Social Evitado: 0.00000 M€
+                        </div>
+                        <div class="text-xs text-tesla-muted font-mono" id="descendants-counter">
+                            +0.00000 descendientes futuros proyectados
+                        </div>
                     </div>
                 </div>
                 <div class="text-xs text-tesla-muted mt-2 pt-2 border-t border-tesla-border/50 flex justify-between">
@@ -168,7 +182,7 @@
                     <div>
                         <div class="flex justify-between text-xs mb-1">
                             <span class="text-tesla-muted">Año 1 (Acumulado proyectado)</span>
-                            <span class="font-mono text-white" id="proj-y1">0 accidents / 0 lives</span>
+                            <span class="font-mono text-white" id="proj-y1">0 acc. / 0 vidas (~0 M€)</span>
                         </div>
                         <div class="w-full bg-tesla-border h-1.5 rounded-full overflow-hidden">
                             <div class="bg-tesla-accent h-full rounded-full" style="width: 20%"></div>
@@ -177,7 +191,7 @@
                     <div>
                         <div class="flex justify-between text-xs mb-1">
                             <span class="text-tesla-muted">Año 3 (Acumulado proyectado)</span>
-                            <span class="font-mono text-white" id="proj-y3">0 accidents / 0 lives</span>
+                            <span class="font-mono text-white" id="proj-y3">0 acc. / 0 vidas (~0 M€)</span>
                         </div>
                         <div class="w-full bg-tesla-border h-1.5 rounded-full overflow-hidden">
                             <div class="bg-tesla-accent h-full rounded-full" style="width: 60%"></div>
@@ -186,7 +200,7 @@
                     <div>
                         <div class="flex justify-between text-xs mb-1">
                             <span class="text-tesla-muted">Año 5 (Acumulado proyectado)</span>
-                            <span class="font-mono text-white" id="proj-y5">0 accidents / 0 lives</span>
+                            <span class="font-mono text-white" id="proj-y5">0 acc. / 0 vidas (~0 M€)</span>
                         </div>
                         <div class="w-full bg-tesla-border h-1.5 rounded-full overflow-hidden">
                             <div class="bg-tesla-accent h-full rounded-full" style="width: 100%"></div>
@@ -199,6 +213,19 @@
                     <span id="current-elapsed-text">Tiempo transcurrido: 0d 0h 0m</span>
                 </div>
             </div>
+        </div>
+
+        <!-- Observaciones de cálculo -->
+        <div class="bg-tesla-card/50 border border-tesla-border rounded-xl p-6 mb-12 shadow-md">
+            <h3 class="text-xs font-semibold uppercase tracking-wider text-white mb-3">Observaciones Adicionales sobre el Cálculo de Impacto</h3>
+            <ul class="text-xs text-tesla-muted space-y-2 list-disc list-inside leading-relaxed">
+                <li>
+                    <strong>Valoración Económica Social:</strong> El coste monetario de la pérdida humana se calcula sobre un estándar proyectado de <span class="text-white">68 millones de euros por vida humana</span>.
+                </li>
+                <li>
+                    <strong>Impacto Demográfico Generacional:</strong> Este coste pondera la pérdida física de la propia vida afectada sumada a la pérdida proyectada de <span class="text-white">3 generaciones de futurible descendencia directa</span> (estimada de forma agregada en <span class="text-white">15 vidas adicionales</span> que no llegarían a nacer como fruto de la interrupción biológica de dicha línea familiar).
+                </li>
+            </ul>
         </div>
     </main>
 
@@ -224,6 +251,10 @@
         const START_DATE = new Date('2026-04-10T00:00:00');
         const SECONDS_PER_YEAR = 31536000;
 
+        // --- CONSTANTES DE VALORACIÓN HUMANA ---
+        const COST_PER_LIFE = 68000000;       // 68 millones de euros por vida
+        const DESCENDANTS_MULTIPLIER = 15;    // 15 vidas adicionales en 3 generaciones
+
         // --- ANCLA DE INICIALIZACIÓN DE LA SIMULACIÓN ---
         const SESSION_LOAD_TIME = new Date();
         // Genera un inicio simulado exactamente 1 año antes en caso de que el reloj del sistema sea pre-2026.
@@ -246,6 +277,9 @@
         // --- ELEMENTOS DEL DOM ---
         const accidentsCounterEl = document.getElementById('accidents-counter');
         const livesCounterEl = document.getElementById('lives-counter');
+        const costCounterEl = document.getElementById('cost-counter');
+        const descendantsCounterEl = document.getElementById('descendants-counter');
+
         const accidentsRateTextEl = document.getElementById('accidents-rate-text');
         const livesRateTextEl = document.getElementById('lives-rate-text');
         const statusBadgeEl = document.getElementById('status-badge');
@@ -301,10 +335,13 @@
         function updateProjections(rates) {
             const annualAccidents = rates.accidentsAvoidedPerSecond * SECONDS_PER_YEAR;
             const annualLives = rates.livesSavedPerSecond * SECONDS_PER_YEAR;
+            
+            // Proyección del coste en millones de euros
+            const getCostInMillions = (lives) => (lives * COST_PER_LIFE) / 1000000;
 
-            projY1.textContent = `${Math.round(annualAccidents)} acc. / ${Math.round(annualLives)} vidas`;
-            projY3.textContent = `${Math.round(annualAccidents * 3)} acc. / ${Math.round(annualLives * 3)} vidas`;
-            projY5.textContent = `${Math.round(annualAccidents * 5)} acc. / ${Math.round(annualLives * 5)} vidas`;
+            projY1.textContent = `${Math.round(annualAccidents)} acc. / ${annualLives.toFixed(2)} vidas (~${getCostInMillions(annualLives).toFixed(2)} M€)`;
+            projY3.textContent = `${Math.round(annualAccidents * 3)} acc. / ${(annualLives * 3).toFixed(2)} vidas (~${getCostInMillions(annualLives * 3).toFixed(2)} M€)`;
+            projY5.textContent = `${Math.round(annualAccidents * 5)} acc. / ${(annualLives * 5).toFixed(2)} vidas (~${getCostInMillions(annualLives * 5).toFixed(2)} M€)`;
         }
 
         // --- FLUJO TEMPORAL ---
@@ -344,9 +381,17 @@
             const totalAccidents = elapsed * rates.accidentsAvoidedPerSecond;
             const totalLives = elapsed * rates.livesSavedPerSecond;
 
+            // Cálculos específicos solicitados
+            const totalCostInMillions = (totalLives * COST_PER_LIFE) / 1000000;
+            const totalDescendants = totalLives * DESCENDANTS_MULTIPLIER;
+
             // Renderizar contadores con precisión de 5 decimales
             accidentsCounterEl.textContent = totalAccidents.toFixed(5);
             livesCounterEl.textContent = totalLives.toFixed(5);
+
+            // Renderizar subcontadores en el tarjetón de vidas
+            costCounterEl.textContent = `Coste Social Evitado: ${totalCostInMillions.toFixed(5)} M€`;
+            descendantsCounterEl.textContent = `+${totalDescendants.toFixed(5)} descendientes futuros proyectados`;
 
             // Mostrar tasas por segundo indicadas con precisión científica/milisegundos
             accidentsRateTextEl.textContent = `+${(rates.accidentsAvoidedPerSecond * 10).toFixed(6)}/10s`;
@@ -370,36 +415,4 @@
             valKm.textContent = `${currentKm.toLocaleString('es-ES')} km`;
             
             const reductionPct = Math.round(getReductionCoeff(currentReductionFactor) * 100);
-            valFactor.textContent = `${currentReductionFactor}x (${reductionPct}%)`;
-
-            // Ajustar textos informativos de las tarjetas usando IDs directos
-            if (accidentsAvoidanceRateLabel && livesReductionRateLabel) {
-                accidentsAvoidanceRateLabel.textContent = `Tasa de evitación: ${reductionPct}%`;
-                livesReductionRateLabel.textContent = `Reducción de riesgo fatal: ${currentReductionFactor}x`;
-            }
-
-            updateUI();
-        }
-
-        // Resetear a valores iniciales de la metodología solicitada
-        function resetDefaults() {
-            inputFleet.value = DEFAULT_FLEET;
-            inputKm.value = DEFAULT_KM;
-            inputFactor.value = DEFAULT_REDUCTION_FACTOR;
-            updateSliders();
-        }
-
-        // --- INICIALIZACIÓN Y EVENTOS ---
-        inputFleet.addEventListener('input', updateSliders);
-        inputKm.addEventListener('input', updateSliders);
-        inputFactor.addEventListener('input', updateSliders);
-        resetBtn.addEventListener('click', resetDefaults);
-
-        // Inicializar sliders por primera vez
-        updateSliders();
-
-        // Ciclo principal de actualización en tiempo real (alta frecuencia para efecto fluido de milisegundos)
-        setInterval(updateUI, 37);
-    </script>
-</body>
-</html>
+            valFact
