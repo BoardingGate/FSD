@@ -1,0 +1,13 @@
+name: Forzar Cancelacion Manual
+on:
+  workflow_dispatch: # Esto nos permite activarlo con un botón
+
+jobs:
+  cancel-running-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Cancelar otros procesos
+        uses: styfle/cancel-workflow-action@0.11.0
+        with:
+          all_completed: false
+          access_token: ${{ github.token }}
