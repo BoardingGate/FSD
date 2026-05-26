@@ -1,13 +1,22 @@
-name: Forzar Cancelacion Manual
+name: Forzar Cancelacion Manual V2
 on:
-  workflow_dispatch: # Esto nos permite activarlo con un botón
+  workflow_dispatch:
 
 jobs:
-  cancel-running-actions:
+  cancelar:
     runs-on: ubuntu-latest
     steps:
-      - name: Cancelar otros procesos
-        uses: styfle/cancel-workflow-action@0.11.0
-        with:
-          all_completed: false
-          access_token: ${{ github.token }}
+      - name: Forzar cierre de flujos atascados
+        run: |
+          echo "Buscando flujos en progreso..."
+          RUNS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/actions/runs?status=in_progress" \
+            | jq '.workflow_runs[].id')
+          
+          for RUN_ID in $RUNS; do
+            if [ "$RUN_ID" != "${{ github.run_id }}" ]; then
+              echo "Cancelando flujo con ID: $RUN_ID"
+              curl -s -X POST -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+                "https://api.github.com/repos/${{ github.repository }}/actions/runs/$RUN_ID/cancel"
+            fi
+          done
