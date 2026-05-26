@@ -143,7 +143,7 @@
                             <span class="text-tesla-muted">Factor de Reducción de Riesgo FSD</span>
                             <span class="font-mono text-white" id="val-factor">5x (80%)</span>
                         </div>
-                        <input type="range" id="input-factor" min="2" max="10" step="1" value="5" class="w-full accent-tesla-accent bg-tesla-border h-1 rounded-lg cursor-pointer">
+                        <input type="range" id="input-factor" min="2" max="10" step="1" value="8" class="w-full accent-tesla-accent bg-tesla-border h-1 rounded-lg cursor-pointer">
                     </div>
                 </div>
 
@@ -206,7 +206,7 @@
             <div class="mb-6">
                 <h2 class="text-sm font-semibold tracking-wider text-white uppercase mb-3">Metodología y Fuentes de Datos</h2>
                 <p class="text-xs text-tesla-muted leading-relaxed text-justify">
-                    Este sitio web es un modelo de simulación estadística. Los datos se calculan en tiempo real acumulando el impacto teórico desde la aprobación del sistema FSD por la RDW de los Países Bajos el 10 de abril de 2026, fecha que abrió la adopción por reconocimiento mutuo en la UE. Las operaciones se basan en un parque estimado de 53.000 vehículos Tesla en España recorriendo una media de 15.000 km anuales. Las tasas base de siniestralidad (0,3 accidentes y 0,004 muertes por millón de km) provienen de los históricos de la DGT y el Ministerio de Transportes, aplicando una reducción del 80% en los coeficientes de riesgo en base a los Informes de Seguridad Globales de Tesla en conducción autónoma supervisada.
+                    Este sitio web es un modelo de simulación estadística. Los datos se calculan en tiempo real acumulando el impacto teórico desde la aprobación del sistema FSD por la RDW de los Países Bajos el 10 de abril de 2026, fecha que abrió la adopción por reconocimiento mutuo en la UE. Las operaciones se basan en un parque estimado de 53.000 vehículos Tesla en España recorriendo una media de 15.000 km anuales. Las tasas base de siniestralidad (0,3 accidentes y 0,004 muertes por millón de km) provienen de los históricos de la DGT y el Ministerio de Transportes, aplicando una reducción de un ratio -8.0x en los coeficientes de riesgo en base a los Informes de Seguridad Globales de Tesla en conducción autónoma supervisada.
                 </p>
             </div>
             <div class="flex flex-col sm:flex-row justify-between items-center pt-6 border-t border-tesla-border/50 text-[11px] text-tesla-muted">
@@ -225,7 +225,7 @@
         // --- PARÁMETROS BASE / DE FAULT (Métricas requeridas) ---
         const DEFAULT_FLEET = 53000;
         const DEFAULT_KM = 15000;
-        const DEFAULT_REDUCTION_FACTOR = 5; // Equivale a evitar el 80% de siniestros
+        const DEFAULT_REDUCTION_FACTOR = 8; 
 
         // --- TASAS ESPAÑA (Por millón de km) ---
         const ACCIDENT_RATE_PER_MILLION_KM = 0.3;
@@ -263,8 +263,6 @@
 
         // --- CÁLCULOS PRINCIPALES ---
         function getReductionCoeff(factor) {
-            // Un factor de 5x reduce el riesgo a un 20% del original, es decir, evita el 80% (0.8).
-            // De forma generalizada: reducción = (factor - 1) / factor
             return (factor - 1) / factor;
         }
 
