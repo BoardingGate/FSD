@@ -21,10 +21,10 @@
                     colors: {
                         tesla: {
                             dark: '#0d0d0d',
-                            card: '#202023', // Tono gris más claro para contrastar mejor sobre el fondo negro
+                            card: '#242427', // Gris optimizado para mayor contraste sobre el fondo negro
                             accent: '#e82127',
                             muted: '#8e8e93',
-                            border: '#333336'
+                            border: '#3a3a3c'
                         }
                     }
                 }
@@ -45,7 +45,7 @@
             width: 100%;
             max-width: 1400px;
             height: 400px;
-            background: radial-gradient(circle, rgba(232, 33, 39, 0.04) 0%, rgba(13, 13, 13, 0) 70%);
+            background: radial-gradient(circle, rgba(232, 33, 39, 0.05) 0%, rgba(13, 13, 13, 0) 70%);
             z-index: -1;
             pointer-events: none;
         }
@@ -56,17 +56,34 @@
     <div class="glow-bg"></div>
 
     <!-- Header -->
-    <header class="border-b border-tesla-border bg-tesla-dark/80 backdrop-blur-md sticky top-0 z-50">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
-                <!-- SVG Logo Tesla -->
-                <svg class="h-5 w-5 fill-current text-tesla-accent" viewBox="0 0 342 350" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M171.1 349.6c-2.4 0-4.7-1.1-6.1-2.9L1.7 149c-2-2.6-2.1-6.2-.2-8.9l12.5-17.7c1.7-2.4 4.5-3.8 7.5-3.8h56.2c4.2 0 7.9 2.7 9.2 6.7 8.2 25.2 24.2 46.5 45.4 60.5 11 7.3 23.9 11.2 37.1 11.2s26.1-3.9 37.1-11.2c21.2-14 37.2-35.3 45.4-60.5 1.3-4 5-6.7 9.2-6.7h56.2c3 0 5.8 1.4 7.5 3.8l12.5 17.7c1.9 2.7 1.8 6.3-.2 8.9L177.2 346.7c-1.4 1.8-3.7 2.9-6.1 2.9zm135.2-263.8c-2.4 0-4.6-1.1-6.1-3-15-18.4-44.5-30-79.6-31.5-2.7-.1-5.1-1.7-6.2-4.1L203 21.6c-1.7-3.8.4-8.2 4.4-9.4 43.1-13.3 90.7-5.4 126.3 21.2 3 2.2 4.1 6.1 2.7 9.6l-24.3 60.1c-1.2 2.7-3.9 4.7-6.8 4.7zM35.7 85.8c-2.9 0-5.6-2-6.8-4.7L4.6 21c-1.4-3.5-.3-7.4 2.7-9.6C42.9-15.2 90.5-23.1 133.6-9.8c4 1.2 6.1 5.6 4.4 9.4L126.6 61c-1.1 2.4-3.5 4-6.2 4.1-35.1 1.5-64.6 13.1-79.6 31.5-1.5 1.9-3.7 3-6.1 3z"/>
+    <header class="border-b border-tesla-border bg-tesla-dark/95 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-4">
+                <!-- SVG Logo Tesla con Alas estilizado -->
+                <svg class="h-10 w-auto" viewBox="0 0 600 220" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Ala Izquierda -->
+                    <g fill="#e2e8f0" opacity="0.85">
+                        <path d="M 240 100 C 180 75 100 85 40 110 C 90 125 160 120 230 115 Z" />
+                        <path d="M 235 115 C 170 100 110 110 60 135 C 110 145 170 140 230 130 Z" />
+                        <path d="M 230 130 C 170 120 120 135 80 160 C 120 165 170 155 225 142 Z" />
+                    </g>
+                    <!-- Logo Tesla Central (T) -->
+                    <g fill="#e82127">
+                        <path d="M171.1 349.6c-2.4 0-4.7-1.1-6.1-2.9L1.7 149c-2-2.6-2.1-6.2-.2-8.9l12.5-17.7c1.7-2.4 4.5-3.8 7.5-3.8h56.2c4.2 0 7.9 2.7 9.2 6.7 8.2 25.2 24.2 46.5 45.4 60.5 11 7.3 23.9 11.2 37.1 11.2s26.1-3.9 37.1-11.2c21.2-14 37.2-35.3 45.4-60.5 1.3-4 5-6.7 9.2-6.7h56.2c3 0 5.8 1.4 7.5 3.8l12.5 17.7c1.9 2.7 1.8 6.3-.2 8.9L177.2 346.7c-1.4 1.8-3.7 2.9-6.1 2.9zm135.2-263.8c-2.4 0-4.6-1.1-6.1-3-15-18.4-44.5-30-79.6-31.5-2.7-.1-5.1-1.7-6.2-4.1L203 21.6c-1.7-3.8.4-8.2 4.4-9.4 43.1-13.3 90.7-5.4 126.3 21.2 3 2.2 4.1 6.1 2.7 9.6l-24.3 60.1c-1.2 2.7-3.9 4.7-6.8 4.7zM35.7 85.8c-2.9 0-5.6-2-6.8-4.7L4.6 21c-1.4-3.5-.3-7.4 2.7-9.6C42.9-15.2 90.5-23.1 133.6-9.8c4 1.2 6.1 5.6 4.4 9.4L126.6 61c-1.1 2.4-3.5 4-6.2 4.1-35.1 1.5-64.6 13.1-79.6 31.5-1.5 1.9-3.7 3-6.1 3z" transform="translate(130, -30) scale(0.6)"/>
+                    </g>
+                    <!-- Ala Derecha -->
+                    <g fill="#e2e8f0" opacity="0.85" transform="translate(600, 0) scale(-1, 1)">
+                        <path d="M 240 100 C 180 75 100 85 40 110 C 90 125 160 120 230 115 Z" />
+                        <path d="M 235 115 C 170 100 110 110 60 135 C 110 145 170 140 230 130 Z" />
+                        <path d="M 230 130 C 170 120 120 135 80 160 C 120 165 170 155 225 142 Z" />
+                    </g>
                 </svg>
-                <span class="text-white font-medium text-sm tracking-tight">Simulador de impacto del NO uso del FSD en España</span>
+                <span class="text-white font-medium text-sm md:text-base tracking-tight border-l border-tesla-border pl-4 hidden sm:inline">
+                    Simulador de impacto del NO uso del FSD en España
+                </span>
             </div>
             <div id="status-badge" class="px-3 py-1 text-xs font-semibold rounded-full border border-yellow-500/30 bg-yellow-500/10 text-yellow-500">
-                Calculando modelo...
+                Iniciando modelo...
             </div>
         </div>
     </header>
@@ -86,8 +103,8 @@
         <!-- Grid de Contadores Principales -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <!-- Card 1: Accidentes Evitados -->
-            <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group shadow-lg shadow-black/50">
-                <div class="absolute top-0 left-0 w-1 h-full bg-tesla-accent/40 group-hover:bg-tesla-accent transition-colors"></div>
+            <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group shadow-xl shadow-black">
+                <div class="absolute top-0 left-0 w-1 h-full bg-tesla-accent/60 group-hover:bg-tesla-accent transition-colors"></div>
                 <div>
                     <span class="text-xs uppercase tracking-wider text-tesla-muted font-semibold block mb-2">Estimación de Accidentes de Tráfico Evitados</span>
                     <div class="text-3xl lg:text-5xl font-mono font-bold text-white tracking-tight py-4" id="accidents-counter">
@@ -101,8 +118,8 @@
             </div>
 
             <!-- Card 2: Vidas Salvadas -->
-            <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group shadow-lg shadow-black/50">
-                <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500/40 group-hover:bg-emerald-500 transition-colors"></div>
+            <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group shadow-xl shadow-black">
+                <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500/60 group-hover:bg-emerald-500 transition-colors"></div>
                 <div>
                     <span class="text-xs uppercase tracking-wider text-tesla-muted font-semibold block mb-2">Estimación de Vidas Humanas Salvadas</span>
                     <div class="text-3xl lg:text-5xl font-mono font-bold text-white tracking-tight py-4" id="lives-counter">
@@ -119,7 +136,7 @@
         <!-- Panel de Control y Telemetría -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
             <!-- Ajustes Interactivos (Fórmula Dinámica) -->
-            <div class="bg-tesla-card border border-tesla-border rounded-xl p-6 lg:col-span-1 shadow-lg shadow-black/50">
+            <div class="bg-tesla-card border border-tesla-border rounded-xl p-6 lg:col-span-1 shadow-xl shadow-black">
                 <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-6">Variables del Modelo</h3>
                 
                 <div class="space-y-6">
@@ -157,7 +174,7 @@
             </div>
 
             <!-- Gráfico de Proyección / Telemetría Visual -->
-            <div class="bg-tesla-card border border-tesla-border rounded-xl p-6 lg:col-span-2 flex flex-col justify-between shadow-lg shadow-black/50">
+            <div class="bg-tesla-card border border-tesla-border rounded-xl p-6 lg:col-span-2 flex flex-col justify-between shadow-xl shadow-black">
                 <div>
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-2">Proyección Acumulativa a Largo Plazo</h3>
                     <p class="text-xs text-tesla-muted mb-6">Simulación estimada del impacto acumulado de seguridad por año en España.</p>
@@ -224,7 +241,13 @@
         const START_DATE = new Date('2026-04-10T00:00:00');
         const SECONDS_PER_YEAR = 31536000;
 
-        // --- PARÁMETROS BASE / DE FAULT (Métricas requeridas) ---
+        // --- ANCLA FIJA DE INICIALIZACIÓN DE LA SIMULACIÓN ---
+        // Se define en el momento exacto en que el usuario carga la página web.
+        const SESSION_LOAD_TIME = new Date();
+        // Genera un inicio simulado exactamente 1 año antes del momento de carga actual si la fecha actual es previa a 2026.
+        const MOCK_START_DATE = new Date(SESSION_LOAD_TIME.getTime() - (SECONDS_PER_YEAR * 1000));
+
+        // --- PARÁMETROS BASE / DE DEFAULT ---
         const DEFAULT_FLEET = 53000;
         const DEFAULT_KM = 15000;
         const DEFAULT_REDUCTION_FACTOR = 8; 
@@ -298,18 +321,15 @@
             projY5.textContent = `${Math.round(annualAccidents * 5)} acc. / ${Math.round(annualLives * 5)} vidas`;
         }
 
-        // --- FLUJO TEMPORAL ---
-        // Evaluar la situación de la fecha actual con respecto al 10 de abril de 2026
+        // --- FLUJO TEMPORAL CORREGIDO ---
         function getElapsedSeconds() {
             const now = new Date();
             let elapsed = (now.getTime() - START_DATE.getTime()) / 1000;
 
             if (elapsed < 0) {
-                // Si el usuario ejecuta esto antes del 10 de abril de 2026,
-                // mostramos una simulación dinámica acumulada de prueba
-                // simulando que ha transcurrido exactamente un año desde el lanzamiento real
-                const mockLaunch = new Date(now.getTime() - (SECONDS_PER_YEAR * 1000));
-                elapsed = (now.getTime() - mockLaunch.getTime()) / 1000;
+                // Cálculo dinámico acumulado sumando la diferencia en tiempo real desde la carga del sitio
+                const timeDiffSinceLoad = (now.getTime() - SESSION_LOAD_TIME.getTime()) / 1000;
+                elapsed = ((SESSION_LOAD_TIME.getTime() - MOCK_START_DATE.getTime()) / 1000) + timeDiffSinceLoad;
 
                 statusBadgeEl.textContent = "Simulación: Proyección 1er Año";
                 statusBadgeEl.className = "px-3 py-1 text-xs font-semibold rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400";
