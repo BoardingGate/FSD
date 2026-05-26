@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tesla FSD: Impacto de Seguridad en España</title>
+    <title>Simulador de impacto del NO uso del FSD en España</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts: Inter para texto general, JetBrains Mono para números -->
@@ -21,10 +21,10 @@
                     colors: {
                         tesla: {
                             dark: '#0d0d0d',
-                            card: '#161616',
+                            card: '#202023', // Tono gris más claro para contrastar mejor sobre el fondo negro
                             accent: '#e82127',
                             muted: '#8e8e93',
-                            border: '#2c2c2e'
+                            border: '#333336'
                         }
                     }
                 }
@@ -59,9 +59,11 @@
     <header class="border-b border-tesla-border bg-tesla-dark/80 backdrop-blur-md sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <span class="text-tesla-accent tracking-widest font-bold text-lg">TESLA FSD</span>
-                <span class="text-tesla-border">|</span>
-                <span class="text-xs text-tesla-muted uppercase tracking-wider">Simulador de Impacto</span>
+                <!-- SVG Logo Tesla -->
+                <svg class="h-5 w-5 fill-current text-tesla-accent" viewBox="0 0 342 350" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M171.1 349.6c-2.4 0-4.7-1.1-6.1-2.9L1.7 149c-2-2.6-2.1-6.2-.2-8.9l12.5-17.7c1.7-2.4 4.5-3.8 7.5-3.8h56.2c4.2 0 7.9 2.7 9.2 6.7 8.2 25.2 24.2 46.5 45.4 60.5 11 7.3 23.9 11.2 37.1 11.2s26.1-3.9 37.1-11.2c21.2-14 37.2-35.3 45.4-60.5 1.3-4 5-6.7 9.2-6.7h56.2c3 0 5.8 1.4 7.5 3.8l12.5 17.7c1.9 2.7 1.8 6.3-.2 8.9L177.2 346.7c-1.4 1.8-3.7 2.9-6.1 2.9zm135.2-263.8c-2.4 0-4.6-1.1-6.1-3-15-18.4-44.5-30-79.6-31.5-2.7-.1-5.1-1.7-6.2-4.1L203 21.6c-1.7-3.8.4-8.2 4.4-9.4 43.1-13.3 90.7-5.4 126.3 21.2 3 2.2 4.1 6.1 2.7 9.6l-24.3 60.1c-1.2 2.7-3.9 4.7-6.8 4.7zM35.7 85.8c-2.9 0-5.6-2-6.8-4.7L4.6 21c-1.4-3.5-.3-7.4 2.7-9.6C42.9-15.2 90.5-23.1 133.6-9.8c4 1.2 6.1 5.6 4.4 9.4L126.6 61c-1.1 2.4-3.5 4-6.2 4.1-35.1 1.5-64.6 13.1-79.6 31.5-1.5 1.9-3.7 3-6.1 3z"/>
+                </svg>
+                <span class="text-white font-medium text-sm tracking-tight">Simulador de impacto del NO uso del FSD en España</span>
             </div>
             <div id="status-badge" class="px-3 py-1 text-xs font-semibold rounded-full border border-yellow-500/30 bg-yellow-500/10 text-yellow-500">
                 Calculando modelo...
@@ -73,8 +75,8 @@
     <main class="max-w-7xl mx-auto px-6 py-12 flex-grow w-full">
         <!-- Hero Title -->
         <div class="text-center max-w-3xl mx-auto mb-12">
-            <h1 class="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
-                Tesla FSD: Impacto de Seguridad en España
+            <h1 class="text-3xl md:text-4xl font-semibold tracking-tight mb-4 text-white">
+                Simulador de impacto del NO uso del FSD en España
             </h1>
             <p class="text-tesla-muted text-sm md:text-base leading-relaxed">
                 Simulación en tiempo real basada en el marco de reconocimiento mutuo europeo desde el 10 de abril de 2026.
@@ -84,7 +86,7 @@
         <!-- Grid de Contadores Principales -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
             <!-- Card 1: Accidentes Evitados -->
-            <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+            <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group shadow-lg shadow-black/50">
                 <div class="absolute top-0 left-0 w-1 h-full bg-tesla-accent/40 group-hover:bg-tesla-accent transition-colors"></div>
                 <div>
                     <span class="text-xs uppercase tracking-wider text-tesla-muted font-semibold block mb-2">Estimación de Accidentes de Tráfico Evitados</span>
@@ -93,13 +95,13 @@
                     </div>
                 </div>
                 <div class="text-xs text-tesla-muted mt-2 pt-2 border-t border-tesla-border/50 flex justify-between">
-                    <span>Tasa de evitación: 80%</span>
+                    <span>Tasa de evitación: 87.5%</span>
                     <span id="accidents-rate-text">~0.00000/s</span>
                 </div>
             </div>
 
             <!-- Card 2: Vidas Salvadas -->
-            <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group">
+            <div class="bg-tesla-card border border-tesla-border rounded-xl p-8 flex flex-col justify-between relative overflow-hidden group shadow-lg shadow-black/50">
                 <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500/40 group-hover:bg-emerald-500 transition-colors"></div>
                 <div>
                     <span class="text-xs uppercase tracking-wider text-tesla-muted font-semibold block mb-2">Estimación de Vidas Humanas Salvadas</span>
@@ -108,7 +110,7 @@
                     </div>
                 </div>
                 <div class="text-xs text-tesla-muted mt-2 pt-2 border-t border-tesla-border/50 flex justify-between">
-                    <span>Reducción de riesgo fatal: 5x</span>
+                    <span>Reducción de riesgo fatal: 8x</span>
                     <span id="lives-rate-text">~0.00000/s</span>
                 </div>
             </div>
@@ -117,7 +119,7 @@
         <!-- Panel de Control y Telemetría -->
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-12">
             <!-- Ajustes Interactivos (Fórmula Dinámica) -->
-            <div class="bg-tesla-card border border-tesla-border rounded-xl p-6 lg:col-span-1">
+            <div class="bg-tesla-card border border-tesla-border rounded-xl p-6 lg:col-span-1 shadow-lg shadow-black/50">
                 <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-6">Variables del Modelo</h3>
                 
                 <div class="space-y-6">
@@ -141,7 +143,7 @@
                     <div>
                         <div class="flex justify-between text-xs mb-2">
                             <span class="text-tesla-muted">Factor de Reducción de Riesgo FSD</span>
-                            <span class="font-mono text-white" id="val-factor">5x (80%)</span>
+                            <span class="font-mono text-white" id="val-factor">8x (87.5%)</span>
                         </div>
                         <input type="range" id="input-factor" min="2" max="10" step="1" value="8" class="w-full accent-tesla-accent bg-tesla-border h-1 rounded-lg cursor-pointer">
                     </div>
@@ -155,7 +157,7 @@
             </div>
 
             <!-- Gráfico de Proyección / Telemetría Visual -->
-            <div class="bg-tesla-card border border-tesla-border rounded-xl p-6 lg:col-span-2 flex flex-col justify-between">
+            <div class="bg-tesla-card border border-tesla-border rounded-xl p-6 lg:col-span-2 flex flex-col justify-between shadow-lg shadow-black/50">
                 <div>
                     <h3 class="text-sm font-semibold uppercase tracking-wider text-white mb-2">Proyección Acumulativa a Largo Plazo</h3>
                     <p class="text-xs text-tesla-muted mb-6">Simulación estimada del impacto acumulado de seguridad por año en España.</p>
@@ -363,6 +365,10 @@
             
             const reductionPct = Math.round(getReductionCoeff(currentReductionFactor) * 100);
             valFactor.textContent = `${currentReductionFactor}x (${reductionPct}%)`;
+
+            // Ajustar textos informativos del ratio de evitación de forma dinámica
+            document.querySelector('#accidents-counter').parentNode.parentNode.querySelector('span:last-child').children[0].textContent = `Tasa de evitación: ${reductionPct}%`;
+            document.querySelector('#lives-counter').parentNode.parentNode.querySelector('span:last-child').children[0].textContent = `Reducción de riesgo fatal: ${currentReductionFactor}x`;
 
             updateUI();
         }
